@@ -1,0 +1,31 @@
+function pairwise(arr, arg) {
+  const used = []
+
+  arr.forEach((_, i) => {
+    console.log(i)
+    if(used.includes(i))
+      return 
+
+    let match = firstIndexNotUsed(used, arr, arg, i)
+
+    if(match){
+        used.push(+match, i)
+      }
+  })
+
+  return used.reduce((acc, cur) => acc + Number(cur), 0)
+} 
+
+function firstIndexNotUsed(used, arr, arg, cur){
+  for(let i in arr){
+    if(i == cur)
+      continue
+
+    if((arr[i] + arr[cur]) == arg)
+      if(!used.includes(Number(i)))
+        return i
+        
+  }
+  return null
+
+}   
